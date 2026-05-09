@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>麻薯翻译 - 设置</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: linear-gradient(135deg, #fff8f0, #fff3e6);
+      color: #4a3728;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .logo {
+      font-size: 48px;
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    h1 {
+      font-size: 28px;
+      color: #8b5a2b;
+      margin-top: 10px;
+    }
+    
+    .section {
+      background: white;
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(139, 90, 43, 0.1);
+      border: 3px solid #f5d5b8;
+    }
+    
+    .section h2 {
+      font-size: 18px;
+      color: #8b5a2b;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px dashed #e8c4a8;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+    
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #7a5c3e;
+      margin-bottom: 8px;
+    }
+    
+    input[type="text"],
+    input[type="password"],
+    select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e8c4a8;
+      border-radius: 12px;
+      font-size: 14px;
+      font-family: inherit;
+      background: #fff8f0;
+      color: #4a3728;
+      transition: border-color 0.2s;
+    }
+    
+    input:focus,
+    select:focus {
+      outline: none;
+      border-color: #ff9800;
+    }
+    
+    .hint {
+      font-size: 12px;
+      color: #c4956a;
+      margin-top: 6px;
+    }
+    
+    .actions {
+      text-align: center;
+      margin-top: 30px;
+    }
+    
+    button {
+      padding: 12px 40px;
+      border: none;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    
+    .btn-save {
+      background: linear-gradient(135deg, #ff9800, #ff7043);
+      color: white;
+      box-shadow: 0 4px 16px rgba(255, 152, 0, 0.3);
+    }
+    
+    .btn-save:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
+    }
+    
+    .btn-reset {
+      background: rgba(245, 213, 184, 0.5);
+      color: #8b5a2b;
+      margin-left: 10px;
+    }
+    
+    .btn-reset:hover {
+      background: rgba(245, 213, 184, 0.8);
+    }
+    
+    .status {
+      text-align: center;
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 10px;
+      display: none;
+    }
+    
+    .status.success {
+      display: block;
+      background: #e8f5e9;
+      color: #4caf50;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">🟤</div>
+      <h1>麻薯翻译设置</h1>
+    </header>
+
+    <!-- 通用设置 -->
+    <section class="section">
+      <h2>🌐 翻译设置</h2>
+      
+      <div class="form-group">
+        <label for="engine">翻译引擎</label>
+        <select id="engine">
+          <option value="baidu">百度翻译 (免费，国内可用)</option>
+          <option value="google">Google 翻译 (免费，国内可能不可用)</option>
+          <option value="microsoft">微软翻译 (每月 200 万字符免费)</option>
+          <option value="youdao">有道翻译</option>
+        </select>
+        <p class="hint">推荐使用百度翻译，国内完全可用且免费</p>
+      </div>
+      
+      <div class="form-group">
+        <label for="targetLang">默认目标语言</label>
+        <select id="targetLang">
+          <option value="zh-CN">中文</option>
+          <option value="en">English</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- 微软翻译配置 -->
+    <section class="section" id="microsoftConfig">
+      <h2>🔵 微软翻译配置</h2>
+      
+      <div class="form-group">
+        <label for="microsoftKey">API Key</label>
+        <input type="password" id="microsoftKey" placeholder="输入 Azure 订阅密钥">
+        <p class="hint">在 Azure 门户创建翻译服务后获取</p>
+      </div>
+      
+      <div class="form-group">
+        <label for="microsoftRegion">区域</label>
+        <select id="microsoftRegion">
+          <option value="global">Global</option>
+          <option value="eastasia">East Asia</option>
+          <option value="southeastasia">Southeast Asia</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- 有道翻译配置 -->
+    <section class="section" id="youdaoConfig">
+      <h2>🟢 有道翻译配置</h2>
+      
+      <div class="form-group">
+        <label for="youdaoAppId">应用 ID</label>
+        <input type="text" id="youdaoAppId" placeholder="有道智云应用 ID">
+      </div>
+      
+      <div class="form-group">
+        <label for="youdaoAppKey">应用密钥</label>
+        <input type="password" id="youdaoAppKey" placeholder="有道智云应用密钥">
+        <p class="hint">在 <a href="https://ai.youdao.com" target="_blank">有道智云</a> 创建应用获取</p>
+      </div>
+    </section>
+
+    <!-- 保存按钮 -->
+    <div class="actions">
+      <button class="btn-save" id="save">💾 保存设置</button>
+      <button class="btn-reset" id="reset">🔄 恢复默认</button>
+    </div>
+    
+    <div class="status" id="status">✅ 设置已保存</div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

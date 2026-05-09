@@ -1,0 +1,4 @@
+/* Content script 基础样式 */
+#mochi-float-window * {
+  box-sizing: border-box;
+}

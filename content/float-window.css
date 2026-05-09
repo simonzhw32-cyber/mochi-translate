@@ -1,0 +1,204 @@
+/* ===== 悬浮窗 - 卡通风格 ===== */
+
+#mochi-float-window {
+  position: fixed;
+  z-index: 2147483647;
+  width: 320px;
+  max-width: 90vw;
+  background: linear-gradient(135deg, #fff8f0 0%, #fff0e6 100%);
+  border-radius: 20px;
+  box-shadow: 
+    0 8px 32px rgba(139, 90, 43, 0.15),
+    0 2px 8px rgba(139, 90, 43, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 3px solid #f5d5b8;
+  font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4a3728;
+  overflow: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: auto;
+}
+
+/* 出现/隐藏动画 */
+.mochi-float-hidden {
+  opacity: 0;
+  transform: scale(0.8) translateY(10px);
+  pointer-events: none;
+}
+
+.mochi-float-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  animation: mochiBounceIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes mochiBounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(20px);
+  }
+  60% {
+    transform: scale(1.05) translateY(-3px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* 头部 */
+.mochi-float-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px 6px;
+  background: linear-gradient(90deg, #f5d5b8 0%, #fce4cc 100%);
+  border-bottom: 2px dashed #e8c4a8;
+  border-radius: 17px 17px 0 0;
+}
+
+.mochi-float-drag {
+  font-weight: 700;
+  font-size: 13px;
+  color: #8b5a2b;
+  cursor: grab;
+  user-select: none;
+  letter-spacing: 0.5px;
+}
+
+.mochi-float-btns {
+  display: flex;
+  gap: 6px;
+}
+
+.mochi-float-copy,
+.mochi-float-close {
+  cursor: pointer;
+  font-size: 14px;
+  padding: 2px 4px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.mochi-float-copy:hover {
+  background: #fff3e0;
+  transform: scale(1.2);
+}
+
+.mochi-float-close {
+  color: #c4956a;
+  font-weight: 700;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mochi-float-close:hover {
+  background: #ffccbc;
+  color: #e65100;
+  transform: scale(1.2) rotate(90deg);
+}
+
+/* 语言标签 */
+.mochi-float-lang {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px 14px;
+  font-size: 12px;
+  color: #b07845;
+  font-weight: 500;
+}
+
+.mochi-src-lang,
+.mochi-tgt-lang {
+  background: rgba(245, 213, 184, 0.4);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+}
+
+.mochi-lang-arrow {
+  color: #d4a574;
+  font-size: 14px;
+}
+
+/* 原文 */
+.mochi-float-original {
+  padding: 6px 14px;
+  font-size: 13px;
+  color: #7a5c3e;
+  max-height: 80px;
+  overflow-y: auto;
+  border-bottom: 2px dashed #e8c4a8;
+  word-break: break-word;
+}
+
+/* 分割线 */
+.mochi-float-divider {
+  /* 使用 dashed border 代替 */
+  margin: 0 14px;
+}
+
+/* 译文 */
+.mochi-float-result {
+  padding: 8px 14px 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4a3728;
+  min-height: 40px;
+  word-break: break-word;
+}
+
+.mochi-float-result.mochi-error {
+  color: #e65100;
+  font-size: 12px;
+}
+
+/* 加载动画 */
+.mochi-float-result.mochi-loading::after {
+  content: '';
+  display: inline-block;
+  animation: mochiDot 1.4s infinite;
+}
+
+@keyframes mochiDot {
+  0%, 20% { content: ''; }
+  40% { content: '.'; }
+  60% { content: '..'; }
+  80%, 100% { content: '...'; }
+}
+
+/* 引擎标签 */
+.mochi-float-engine {
+  text-align: right;
+  padding: 2px 14px 8px;
+  font-size: 10px;
+  color: #c4956a;
+  font-style: italic;
+}
+
+/* 滚动条美化 */
+.mochi-float-original::-webkit-scrollbar {
+  width: 4px;
+}
+
+.mochi-float-original::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.mochi-float-original::-webkit-scrollbar-thumb {
+  background: #e8c4a8;
+  border-radius: 4px;
+}
+
+.mochi-float-original::-webkit-scrollbar-thumb:hover {
+  background: #d4a574;
+}
